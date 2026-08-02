@@ -1,8 +1,8 @@
 const contactDetails = [
   {
     label: "Email",
-    value: "info@excelandaccessconsultant.com",
-    href: "mailto:info@excelandaccessconsultant.com",
+    value: "info@cunnectit.com",
+    href: "mailto:info@cunnectit.com",
   },
   {
     label: "Phone",
