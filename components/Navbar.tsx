@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { BrandLogo } from "./BrandLogo";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -16,18 +17,8 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 px-3 backdrop-blur-xl sm:px-6">
       <div className="relative mx-auto max-w-[1280px] bg-white/90 text-ink">
         <div className="flex h-[68px] items-center justify-between px-4 sm:px-5">
-          <a href="#top" className="flex items-center gap-3 text-ink" aria-label="Mithlesh home">
-            <span className="grid size-10 place-items-center rounded-xl bg-lime font-mono text-xs font-black text-white">
-              MS
-            </span>
-            <span className="hidden sm:block">
-              <span className="block text-sm font-semibold tracking-[-0.02em]">
-                Mithlesh
-              </span>
-              <span className="block font-mono text-[9px] uppercase tracking-[0.14em] text-ink/50">
-                Software consulting
-              </span>
-            </span>
+          <a href="#top" className="flex items-center text-ink" aria-label="Cunnectit home">
+            <BrandLogo />
           </a>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">

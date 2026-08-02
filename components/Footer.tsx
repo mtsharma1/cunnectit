@@ -1,3 +1,5 @@
+import { BrandLogo } from "./BrandLogo";
+
 const serviceColumns = [
   [
     { label: "Inventory systems", href: "#capabilities" },
@@ -43,10 +45,10 @@ export function Footer() {
         <div>
           <a
             href="#top"
-            className="text-3xl font-light tracking-[-0.045em] text-coral sm:text-4xl"
-            aria-label="Mithlesh Software Consulting home"
+            className="inline-flex"
+            aria-label="Cunnectit home"
           >
-            mithlesh<span className="font-semibold">.</span>
+            <BrandLogo size="footer" />
           </a>
         </div>
 
