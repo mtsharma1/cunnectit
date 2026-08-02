@@ -19,6 +19,7 @@ const companyColumns = [
   [
     { label: "About us", href: "#about" },
     { label: "How we work", href: "#approach" },
+    { label: "Client stories", href: "#clients" },
     { label: "Technology", href: "#technology" },
     { label: "Contact us", href: "#contact" },
   ],
@@ -41,14 +42,14 @@ const legal = [
 export function Footer() {
   return (
     <footer className="bg-[#f4f2ef] text-ink">
-      <div className="container-shell py-12 sm:py-16">
+      <div className="container-shell">
         <div>
           <a
             href="#top"
             className="inline-flex"
             aria-label="Cunnectit home"
           >
-            <BrandLogo size="footer" />
+            {/* <BrandLogo size="footer" /> */}
           </a>
         </div>
 

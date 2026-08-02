@@ -8,10 +8,10 @@ export function BrandLogo({ size = "header" }: BrandLogoProps) {
   const isFooter = size === "footer";
 
   return (
-    <span className="inline-flex items-center gap-3">
+    <span className="inline-flex items-center gap-2">
       <span
-        className={`relative shrink-0 overflow-hidden bg-white ${
-          isFooter ? "size-[52px] rounded-2xl" : "size-10 rounded-xl"
+        className={`relative shrink-0 overflow-hidden ${
+          isFooter ? "size-14" : "size-10"
         }`}
         aria-hidden="true"
       >
@@ -21,31 +21,32 @@ export function BrandLogo({ size = "header" }: BrandLogoProps) {
           width={1254}
           height={1254}
           priority={!isFooter}
-          className={`absolute max-w-none ${
+          className={`absolute max-w-none mix-blend-multiply ${
             isFooter
-              ? "-left-[41px] -top-[23px] w-[130px]"
+              ? "-left-[45px] -top-[25px] w-[140px]"
               : "-left-[33px] -top-[18px] w-[104px]"
           }`}
         />
       </span>
 
-      <span>
-        <span
-          className={`block font-semibold leading-none tracking-[-0.04em] text-[#051d4f] ${
-            isFooter ? "text-2xl" : "text-base"
-          }`}
-        >
-          cunnect<span className="text-[#08bddd]">it</span>
-        </span>
-        <span
-          className={`mt-1 block font-mono font-semibold uppercase text-[#15315c]/65 ${
+      <span
+        className={`relative shrink-0 overflow-hidden ${
+          isFooter ? "h-[52px] w-[220px]" : "h-9 w-[150px]"
+        }`}
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/cunnectit-logo.jpg"
+          alt=""
+          width={1254}
+          height={1254}
+          priority={!isFooter}
+          className={`absolute max-w-none mix-blend-multiply ${
             isFooter
-              ? "text-[8px] tracking-[0.16em]"
-              : "text-[7px] tracking-[0.12em]"
+              ? "-left-[33px] -top-[169px] w-[285px]"
+              : "-left-[23px] -top-[115px] w-[195px]"
           }`}
-        >
-          Connect · Innovate · Grow
-        </span>
+        />
       </span>
     </span>
   );
