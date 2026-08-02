@@ -1,26 +1,140 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #2e2e2e;
+  --muted: #626262;
+  --cream: #f3f2f0;
+  --paper: #ffffff;
+  --lime: #ff4f3a;
+  --green: #ff4f3a;
+  --line: #deddd9;
+  --night: #272727;
+  --coral: #ff4f3a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-lime: var(--lime);
+  --color-green: var(--green);
+  --color-line: var(--line);
+  --color-night: var(--night);
+  --color-coral: var(--coral);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+#services,
+#capabilities,
+#about,
+#approach,
+#technology,
+#contact {
+  scroll-margin-top: 90px;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--night);
+}
+
+.container-shell {
+  width: min(1280px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.section-kicker::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+.gradient-heading {
+  color: var(--ink);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(46, 46, 46, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.lift {
+  transition:
+    transform 280ms ease,
+    box-shadow 280ms ease,
+    border-color 280ms ease;
+}
+
+.lift:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 79, 58, 0.4);
+  box-shadow: 0 24px 70px rgba(46, 46, 46, 0.1);
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .container-shell {
+    width: min(100% - 28px, 1280px);
+  }
+}
+
+@media (min-width: 768px) {
+  #services,
+  #capabilities,
+  #about,
+  #approach,
+  #technology,
+  #contact {
+    scroll-margin-top: 180px;
+  }
 }
