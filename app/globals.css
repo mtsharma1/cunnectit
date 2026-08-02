@@ -51,6 +51,7 @@ a {
 #about,
 #approach,
 #technology,
+#clients,
 #contact {
   scroll-margin-top: 90px;
 }
@@ -134,6 +135,7 @@ a {
   #about,
   #approach,
   #technology,
+  #clients,
   #contact {
     scroll-margin-top: 180px;
   }

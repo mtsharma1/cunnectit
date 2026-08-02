@@ -1,6 +1,7 @@
 import { About } from "@/components/About";
 import { AnchorNav } from "@/components/AnchorNav";
 import { Contact } from "@/components/Contact";
+import { ClientStories } from "@/components/ClientStories";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
@@ -18,6 +19,7 @@ export default function Home() {
       <About />
       <Process />
       <TechStack />
+      {/* <ClientStories /> */}
       <Contact />
       <Footer />
     </main>

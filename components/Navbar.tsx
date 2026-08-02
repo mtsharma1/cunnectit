@@ -17,7 +17,11 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 px-3 backdrop-blur-xl sm:px-6">
       <div className="relative mx-auto max-w-[1280px] bg-white/90 text-ink">
         <div className="flex h-[68px] items-center justify-between px-4 sm:px-5">
-          <a href="#top" className="flex items-center text-ink" aria-label="Cunnectit home">
+          <a
+            href="#top"
+            className="flex items-center text-ink"
+            aria-label="Cunnectit home"
+          >
             <BrandLogo />
           </a>
 
