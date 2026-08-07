@@ -1,59 +1,49 @@
-import { BrandLogo } from "./BrandLogo";
+import Link from "next/link";
 
 const serviceColumns = [
   [
-    { label: "Inventory systems", href: "#capabilities" },
-    { label: "Web applications", href: "#capabilities" },
-    { label: "API integrations", href: "#capabilities" },
-    { label: "Chatbot services", href: "#capabilities" },
+    { label: "Inventory systems", href: "/#capabilities" },
+    { label: "Web applications", href: "/#capabilities" },
+    { label: "API integrations", href: "/#capabilities" },
+    { label: "Chatbot services", href: "/#capabilities" },
   ],
   [
-    { label: "Excel & Access", href: "#capabilities" },
-    { label: "Desktop applications", href: "#capabilities" },
-    { label: "Bulk email automation", href: "#capabilities" },
-    { label: "Data, BI & cloud", href: "#technology" },
+    { label: "Excel & Access", href: "/#capabilities" },
+    { label: "Desktop applications", href: "/#capabilities" },
+    { label: "Bulk email automation", href: "/#capabilities" },
+    { label: "Data, BI & cloud", href: "/#technology" },
   ],
 ];
 
 const companyColumns = [
   [
-    { label: "About us", href: "#about" },
-    { label: "How we work", href: "#approach" },
-    { label: "Client stories", href: "#clients" },
-    { label: "Technology", href: "#technology" },
-    { label: "Contact us", href: "#contact" },
+    { label: "About us", href: "/#about" },
+    { label: "How we work", href: "/#approach" },
+    { label: "Client stories", href: "/#clients" },
+    { label: "Technology", href: "/#technology" },
+    { label: "Contact us", href: "/#contact" },
   ],
   [
-    { label: "React & Next.js", href: "#technology" },
-    { label: ".NET & SQL Server", href: "#technology" },
-    { label: "Excel, VBA & Access", href: "#technology" },
-    { label: "Azure & AWS", href: "#technology" },
+    { label: "React & Next.js", href: "/#technology" },
+    { label: ".NET & SQL Server", href: "/#technology" },
+    { label: "Excel, VBA & Access", href: "/#technology" },
+    { label: "Azure & AWS", href: "/#technology" },
   ],
 ];
 
 const legal = [
-  "Privacy",
-  "Terms",
-  "Security",
-  "Accessibility",
-  "Cookie preferences",
+  { label: "Privacy", href: "/privacy-policy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Security" },
+  { label: "Accessibility" },
+  { label: "Cookie preferences" },
 ];
 
 export function Footer() {
   return (
     <footer className="bg-[#f4f2ef] text-ink">
       <div className="container-shell">
-        <div>
-          <a
-            href="#top"
-            className="inline-flex"
-            aria-label="Cunnectit home"
-          >
-            {/* <BrandLogo size="footer" /> */}
-          </a>
-        </div>
-
-        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-20">
+        <div className="grid gap-12 pt-14 lg:grid-cols-2 lg:gap-20 lg:pt-16">
           <div>
             <h2 className="text-2xl font-medium">Services</h2>
             <div className="mt-4 h-0.5 w-12 bg-coral" />
@@ -61,13 +51,13 @@ export function Footer() {
               {serviceColumns.map((column, index) => (
                 <nav key={index} className="grid gap-4" aria-label={`Services column ${index + 1}`}>
                   {column.map((link) => (
-                    <a
+                    <Link
                       key={link.label}
                       href={link.href}
                       className="text-sm text-ink/75 transition hover:translate-x-1 hover:text-green"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               ))}
@@ -81,13 +71,13 @@ export function Footer() {
               {companyColumns.map((column, index) => (
                 <nav key={index} className="grid gap-4" aria-label={`Company column ${index + 1}`}>
                   {column.map((link) => (
-                    <a
+                    <Link
                       key={link.label}
                       href={link.href}
                       className="text-sm text-ink/75 transition hover:translate-x-1 hover:text-green"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               ))}
@@ -99,8 +89,14 @@ export function Footer() {
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-ink/65">
               {legal.map((item, index) => (
-                <span key={item} className="inline-flex items-center gap-3">
-                  {item}
+                <span key={item.label} className="inline-flex items-center gap-3">
+                  {item.href ? (
+                    <Link className="transition hover:text-coral" href={item.href}>
+                      {item.label}
+                    </Link>
+                  ) : (
+                    item.label
+                  )}
                   {index < legal.length - 1 && (
                     <span className="text-ink/30" aria-hidden="true">|</span>
                   )}
