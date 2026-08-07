@@ -5,8 +5,52 @@ export const runtime = "nodejs";
 
 let databasePool;
 
+function configuredVerifyToken() {
+  return process.env.META_WEBHOOK_VERIFY_TOKEN
+    || process.env.WHATSAPP_WEBHOOK_VERIFY_TOKEN
+    || "";
+}
+
+function isPlaceholder(value) {
+  return !value || /your-|replace-|public-host|user:password/i.test(value);
+}
+
+function databaseIsPublic() {
+  const value = process.env.DATABASE_URL;
+  if (isPlaceholder(value)) return false;
+  try {
+    const host = new URL(value).hostname.toLowerCase();
+    return !["localhost", "127.0.0.1", "::1"].includes(host);
+  } catch {
+    return false;
+  }
+}
+
+function readiness() {
+  const verifyTokenConfigured = !isPlaceholder(configuredVerifyToken());
+  const appSecretConfigured = !isPlaceholder(process.env.META_APP_SECRET);
+  const publicDatabaseConfigured = databaseIsPublic();
+  const forwardUrl = process.env.WHATSAPP_WEBHOOK_FORWARD_URL || "";
+  const forwardingConfigured = /^https:\/\//i.test(forwardUrl)
+    || (process.env.NODE_ENV !== "production"
+      && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(?:\/|$)/i.test(forwardUrl));
+  return {
+    ready: verifyTokenConfigured
+      && appSecretConfigured
+      && (publicDatabaseConfigured || forwardingConfigured),
+    verifyTokenConfigured,
+    appSecretConfigured,
+    deliveryDestination: publicDatabaseConfigured
+      ? "database"
+      : forwardingConfigured
+        ? "forward"
+        : "missing",
+  };
+}
+
 function getPool() {
-  if (!process.env.DATABASE_URL) return null;
+  if (!databaseIsPublic() && process.env.NODE_ENV === "production") return null;
+  if (!process.env.DATABASE_URL || isPlaceholder(process.env.DATABASE_URL)) return null;
   databasePool ??= mysql.createPool({
     uri: process.env.DATABASE_URL,
     connectionLimit: 4,
@@ -17,7 +61,7 @@ function getPool() {
 
 function validMetaSignature(rawBody, signature) {
   const secret = process.env.META_APP_SECRET;
-  if (!secret) return process.env.NODE_ENV !== "production";
+  if (isPlaceholder(secret)) return process.env.NODE_ENV !== "production";
   if (!signature?.startsWith("sha256=")) return false;
   const expected = `sha256=${crypto.createHmac("sha256", secret).update(rawBody).digest("hex")}`;
   const expectedBytes = Buffer.from(expected);
@@ -120,9 +164,16 @@ export async function GET(request) {
   const mode = url.searchParams.get("hub.mode");
   const token = url.searchParams.get("hub.verify_token");
   const challenge = url.searchParams.get("hub.challenge");
-  const configuredToken = process.env.META_WEBHOOK_VERIFY_TOKEN;
-  if (!configuredToken) {
-    return Response.json({ error: "META_WEBHOOK_VERIFY_TOKEN is not configured." }, { status: 503 });
+  const configuredToken = configuredVerifyToken();
+  if (!mode) {
+    const state = readiness();
+    return Response.json(state, {
+      status: state.ready ? 200 : 503,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
+  if (isPlaceholder(configuredToken)) {
+    return Response.json({ error: "Webhook verify token is not configured." }, { status: 503 });
   }
   if (mode === "subscribe" && token === configuredToken) {
     return new Response(challenge || "", {
@@ -136,7 +187,7 @@ export async function GET(request) {
 export async function POST(request) {
   const rawBody = await request.text();
   const signature = request.headers.get("x-hub-signature-256");
-  if (!process.env.META_APP_SECRET && process.env.NODE_ENV === "production") {
+  if (isPlaceholder(process.env.META_APP_SECRET) && process.env.NODE_ENV === "production") {
     return Response.json({ error: "META_APP_SECRET is not configured." }, { status: 503 });
   }
   if (!validMetaSignature(rawBody, signature)) {

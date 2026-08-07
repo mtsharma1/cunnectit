@@ -27,6 +27,15 @@ process.env.WHATSAPP_WEBHOOK_FORWARD_URL = `http://127.0.0.1:${address.port}/api
 
 const { GET, POST } = await import("../app/api/webhook/whatsapp/route.js");
 
+const health = await GET(new Request("http://localhost/api/webhook/whatsapp"));
+assert.equal(health.status, 200);
+assert.deepEqual(await health.json(), {
+  ready: true,
+  verifyTokenConfigured: true,
+  appSecretConfigured: true,
+  deliveryDestination: "forward",
+});
+
 const verification = await GET(new Request(
   "http://localhost/api/webhook/whatsapp?hub.mode=subscribe&hub.verify_token=local-test-token&hub.challenge=verified",
 ));
