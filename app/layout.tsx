@@ -14,18 +14,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mithlesh | Software Consultant",
+  title: "Cunnect IT | Software Consultant",
   description:
     "Software consulting since 2010: custom inventory systems, web and desktop applications, Excel and Access automation, databases, BI, and cloud solutions.",
   openGraph: {
-    title: "Mithlesh | Software Consultant",
+    title: "Cunnect IT | Software Consultant",
     description:
       "Custom software, Excel and Access automation, database, BI, and cloud solutions built around your business.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mithlesh | Software Consultant",
+    title: "Cunnect IT | Software Consultant",
     description:
       "Custom software, Excel and Access automation, database, BI, and cloud solutions built around your business.",
   },
