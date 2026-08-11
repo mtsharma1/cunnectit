@@ -4,10 +4,10 @@ import { useState } from "react";
 import { BrandLogo } from "./BrandLogo";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Approach", href: "#approach" },
-  { label: "Technology", href: "#technology" },
+  { label: "Services", href: "/#services" },
+  { label: "About", href: "/#about" },
+  { label: "Approach", href: "/#approach" },
+  { label: "Technology", href: "/#technology" },
 ];
 
 export function Navbar() {
@@ -18,7 +18,7 @@ export function Navbar() {
       <div className="relative mx-auto max-w-[1280px] bg-white/90 text-ink">
         <div className="flex h-[68px] items-center justify-between px-4 sm:px-5">
           <a
-            href="#top"
+            href="/#top"
             className="flex items-center text-ink"
             aria-label="Cunnectit home"
           >
@@ -39,7 +39,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-2">
             <a
-              href="#contact"
+              href="/contact"
               className="hidden rounded-xl bg-lime px-5 py-3 text-xs font-bold text-white transition hover:bg-ink hover:text-white sm:block"
             >
               Start a project <span aria-hidden="true">↗</span>
@@ -76,7 +76,7 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/contact"
               onClick={() => setOpen(false)}
               className="mt-1 rounded-xl bg-lime px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-ink hover:text-white sm:hidden"
             >

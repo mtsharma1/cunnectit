@@ -7,7 +7,6 @@ import { Navbar } from "@/components/Navbar";
 import { Process } from "@/components/Process";
 import { Services } from "@/components/Services";
 import { TechStack } from "@/components/TechStack";
-import { VisitorCameraPresence } from "@/components/VisitorCameraPresence";
 
 export default function Home() {
   return (
@@ -22,7 +21,6 @@ export default function Home() {
       {/* <ClientStories /> */}
       <Contact />
       <Footer />
-      <VisitorCameraPresence />
     </main>
   );
 }
