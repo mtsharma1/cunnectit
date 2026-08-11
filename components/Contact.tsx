@@ -32,7 +32,7 @@ export function Contact() {
               outcome you need. I&apos;ll help turn that into a practical next step.
             </p>
             <a
-              href="mailto:info@excelandaccessconsultant.com?subject=Free%20software%20consultation"
+              href="/contact"
               className="mt-10 inline-flex rounded-xl bg-lime px-7 py-4 text-sm font-bold text-white transition hover:bg-white hover:text-ink"
             >
               Book a free consultation <span className="ml-3" aria-hidden="true">↗</span>

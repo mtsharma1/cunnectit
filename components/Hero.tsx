@@ -27,7 +27,7 @@ export function Hero() {
         fill
         priority
         sizes="100vw"
-        className="-z-30 object-cover object-[68%_center] opacity-75"
+        className="-z-30 object-cover object-[68%_top] opacity-75"
       />
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(243,242,240,0.96)_0%,rgba(243,242,240,0.84)_48%,rgba(243,242,240,0.22)_100%)]" />
       <div className="dot-grid absolute inset-y-0 left-0 -z-10 w-1/2 opacity-35" />

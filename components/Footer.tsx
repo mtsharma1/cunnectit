@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "./BrandLogo";
 
 const serviceColumns = [
   [
@@ -21,7 +22,7 @@ const companyColumns = [
     { label: "How we work", href: "/#approach" },
     { label: "Client stories", href: "/#clients" },
     { label: "Technology", href: "/#technology" },
-    { label: "Contact us", href: "/#contact" },
+    { label: "Contact us", href: "/contact" },
   ],
   [
     { label: "React & Next.js", href: "/#technology" },
@@ -34,16 +35,26 @@ const companyColumns = [
 const legal = [
   { label: "Privacy", href: "/privacy-policy" },
   { label: "Terms", href: "/terms" },
-  { label: "Security" },
+  { label: "Security", href: "/security" },
   { label: "Accessibility" },
-  { label: "Cookie preferences" },
+  { label: "Cookie preferences", href: "/?privacy-settings=open" },
 ];
 
 export function Footer() {
   return (
     <footer className="bg-[#f4f2ef] text-ink">
       <div className="container-shell">
-        <div className="grid gap-12 pt-14 lg:grid-cols-2 lg:gap-20 lg:pt-16">
+        <div className="pt-12 lg:pt-14">
+          <Link
+            href="/#top"
+            aria-label="Cunnectit home"
+            className="inline-flex transition-opacity hover:opacity-80"
+          >
+            <BrandLogo size="footer" />
+          </Link>
+        </div>
+
+        <div className="grid gap-12 pt-10 lg:grid-cols-2 lg:gap-20 lg:pt-12">
           <div>
             <h2 className="text-2xl font-medium">Services</h2>
             <div className="mt-4 h-0.5 w-12 bg-coral" />
