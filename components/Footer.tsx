@@ -118,7 +118,7 @@ export function Footer() {
           </div>
 
           <div className="mt-9 flex flex-col gap-3 text-xs text-ink/55 sm:flex-row sm:items-center sm:justify-between">
-            <p>Copyright © 2026 Mithlesh Software Consulting. All rights reserved.</p>
+            <p>Copyright © 2026 Cunnect IT. All rights reserved.</p>
             <p>Greater Noida · Delhi NCR · India</p>
           </div>
         </div>

@@ -80,7 +80,7 @@ export default function TermsPage() {
             <h2>Agreement to these terms</h2>
             <p>
               These Terms of Service form an agreement between you and Cunnectit,
-              operated by Mithlesh Software Consulting in Greater Noida, Delhi
+              operated by Cunnect IT in Greater Noida, Delhi
               NCR, India. “You” means the individual or organisation accessing
               our website or using our services.
             </p>
@@ -297,7 +297,7 @@ export default function TermsPage() {
           <section id="contact">
             <h2>Contact us</h2>
             <address className="not-italic">
-              <strong>Cunnectit / Mithlesh Software Consulting</strong>
+              <strong>Cunnectit / Cunnect IT</strong>
               <br />
               Greater Noida, Delhi NCR, India
               <br />

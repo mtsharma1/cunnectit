@@ -80,7 +80,7 @@ export default function PrivacyPolicyPage() {
             <h2>Who we are</h2>
             <p>
               Cunnectit is a software consulting and technology services
-              business operated by Mithlesh Software Consulting in Greater
+              business operated by Cunnect IT in Greater
               Noida, Delhi NCR, India. In this policy, “Cunnectit”, “we”, “us”,
               and “our” refer to this business.
             </p>
@@ -281,7 +281,7 @@ export default function PrivacyPolicyPage() {
               For privacy questions, rights requests, or complaints, contact:
             </p>
             <address className="not-italic">
-              <strong>Cunnectit / Mithlesh Software Consulting</strong>
+              <strong>Cunnectit / Cunnect IT</strong>
               <br />
               Greater Noida, Delhi NCR, India
               <br />
