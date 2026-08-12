@@ -33,14 +33,14 @@ export function BrandLogo({ size = "header" }: BrandLogoProps) {
         className={`flex shrink-0 flex-col justify-center ${
           isFooter ? "min-w-[224px]" : "min-w-[154px]"
         }`}
-        aria-label="cunnect IT — Connect, Innovate, Grow"
+        aria-label="Cunnect IT — Connect, Innovate, Grow"
       >
         <span
           className={`whitespace-nowrap font-semibold leading-[0.82] tracking-[-0.055em] text-[#03255e] ${
             isFooter ? "text-[42px]" : "text-[28px]"
           }`}
         >
-          cunnect<span className="ml-[0.18em] uppercase text-[#04bfe7]">IT</span>
+          Cunnect<span className="ml-[0.18em] uppercase text-[#04bfe7]">IT</span>
         </span>
         <span
           className={`mt-1 whitespace-nowrap font-mono font-semibold uppercase text-[#03255e]/70 ${
