@@ -15,12 +15,12 @@ function isPlaceholder(value) {
   return !value || /your-|replace-|public-host|user:password/i.test(value);
 }
 
-function databaseIsPublic() {
+function databaseIsConfigured() {
   const value = process.env.DATABASE_URL;
   if (isPlaceholder(value)) return false;
   try {
-    const host = new URL(value).hostname.toLowerCase();
-    return !["localhost", "127.0.0.1", "::1"].includes(host);
+    const url = new URL(value);
+    return url.protocol === "mysql:" && Boolean(url.hostname && url.pathname.length > 1);
   } catch {
     return false;
   }
@@ -29,7 +29,7 @@ function databaseIsPublic() {
 function readiness() {
   const verifyTokenConfigured = !isPlaceholder(configuredVerifyToken());
   const appSecretConfigured = !isPlaceholder(process.env.META_APP_SECRET);
-  const publicDatabaseConfigured = databaseIsPublic();
+  const databaseConfigured = databaseIsConfigured();
   const forwardUrl = process.env.WHATSAPP_WEBHOOK_FORWARD_URL || "";
   const forwardingConfigured = /^https:\/\//i.test(forwardUrl)
     || (process.env.NODE_ENV !== "production"
@@ -37,10 +37,10 @@ function readiness() {
   return {
     ready: verifyTokenConfigured
       && appSecretConfigured
-      && (publicDatabaseConfigured || forwardingConfigured),
+      && (databaseConfigured || forwardingConfigured),
     verifyTokenConfigured,
     appSecretConfigured,
-    deliveryDestination: publicDatabaseConfigured
+    deliveryDestination: databaseConfigured
       ? "database"
       : forwardingConfigured
         ? "forward"
@@ -49,7 +49,7 @@ function readiness() {
 }
 
 function getPool() {
-  if (!databaseIsPublic() && process.env.NODE_ENV === "production") return null;
+  if (!databaseIsConfigured() && process.env.NODE_ENV === "production") return null;
   if (!process.env.DATABASE_URL || isPlaceholder(process.env.DATABASE_URL)) return null;
   databasePool ??= mysql.createPool({
     uri: process.env.DATABASE_URL,

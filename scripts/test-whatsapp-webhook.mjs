@@ -83,5 +83,15 @@ const invalidSignature = await POST(new Request("http://localhost/api/webhook/wh
 }));
 assert.equal(invalidSignature.status, 401);
 
+// Production readiness must accept MySQL on the same VPS, without opening a connection.
+process.env.NODE_ENV = "production";
+process.env.DATABASE_URL = "mysql://test:contract-secret@127.0.0.1:3306/cunnectit";
+delete process.env.WHATSAPP_WEBHOOK_FORWARD_URL;
+const localDatabaseHealth = await GET(new Request("http://localhost/api/webhook/whatsapp"));
+assert.equal(localDatabaseHealth.status, 200);
+assert.equal((await localDatabaseHealth.json()).deliveryDestination, "database");
+process.env.DATABASE_URL = "https://example.com/cunnectit";
+const invalidDatabaseHealth = await GET(new Request("http://localhost/api/webhook/whatsapp"));
+assert.equal(invalidDatabaseHealth.status, 503);
 receiver.close();
 console.log("WhatsApp webhook verification, signature validation, parsing and forwarding passed.");
